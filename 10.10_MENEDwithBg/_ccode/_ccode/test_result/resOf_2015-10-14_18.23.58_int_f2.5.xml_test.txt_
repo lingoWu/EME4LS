@@ -1,0 +1,33 @@
+T || 生态 || ecological:0.424344 || change:0.320163 || ravage:0.255401 || DEFAULT:0.000092
+T || 建设 || NULL:0.000068 || development:0.004776 || construction:0.008783 || project:0.173259 || conservancy:0.000565 || conservancy^construction:0.782135 || facility:0.008351 || building:0.019371 || construction^construction:0.000624 || DEFAULT:0.002067
+T || 工程 || NULL:0.000085 || project:0.024213 || work:0.069803 || engineering:0.000962 || construction^project:0.001024 || sensibility:0.903630 || DEFAULT:0.000283
+T || 建设 || NULL:0.000050 || development:0.005086 || construction:0.008639 || project:0.100353 || conservancy:0.001564 || conservancy^construction:0.846194 || facility:0.011341 || building:0.024179 || construction^construction:0.001777 || DEFAULT:0.000818
+T || 建设 || NULL:0.004396 || development:0.123266 || construction:0.072629 || project:0.051349 || conservancy:0.055150 || conservancy^construction:0.083770 || facility:0.112316 || building:0.055012 || construction^construction:0.144075 || DEFAULT:0.298038
+T || 水利 || water^conservancy:0.590677 || water:0.097199 || conservancy^project:0.312102 || DEFAULT:0.000022
+T || 工程 || NULL:0.000784 || project:0.281597 || work:0.008453 || engineering:0.008838 || construction^project:0.682687 || sensibility:0.013745 || DEFAULT:0.003897
+T || 工程 || NULL:0.000649 || project:0.157307 || work:0.003318 || engineering:0.040651 || construction^project:0.767733 || sensibility:0.029231 || DEFAULT:0.001112
+T || 水利 || water^conservancy:0.976545 || water:0.000713 || conservancy^project:0.022742 || DEFAULT:0.000000
+T || 建设 || NULL:0.002494 || development:0.013348 || construction:0.025310 || project:0.057912 || conservancy:0.053945 || conservancy^construction:0.442461 || facility:0.313880 || building:0.024322 || construction^construction:0.063158 || DEFAULT:0.003171
+T || 好 || NULL:0.007015 || good:0.083056 || better:0.090302 || better^better:0.772045 || DEFAULT:0.047583
+T || 规划 || plan:0.335681 || planning:0.274024 || plan^for:0.185170 || draw:0.147166 || DEFAULT:0.057959
+T || 问题 || issue:0.341631 || problem:0.545140 || DEFAULT:0.113229
+T || 问题 || issue:0.341628 || problem:0.545145 || DEFAULT:0.113227
+T || 规划 || plan:0.151270 || planning:0.046287 || plan^for:0.018012 || draw:0.013968 || DEFAULT:0.770463
+T || 水利 || water^conservancy:0.031160 || water:0.002731 || conservancy^project:0.966108 || DEFAULT:0.000000
+T || 工程 || NULL:0.001788 || project:0.005549 || work:0.002270 || engineering:0.708424 || construction^project:0.045518 || sensibility:0.236200 || DEFAULT:0.000250
+T || 全面 || complete:0.295016 || fully:0.283624 || aspect:0.103210 || comprehensive^way:0.212937 || comprehensive:0.098787 || DEFAULT:0.006427
+T || 科学 || scientific:0.961304 || DEFAULT:0.038696
+T || 工程 || NULL:0.007322 || project:0.005728 || work:0.011951 || engineering:0.491250 || construction^project:0.128404 || sensibility:0.352889 || DEFAULT:0.002456
+T || 工程 || NULL:0.000216 || project:0.000114 || work:0.000167 || engineering:0.080339 || construction^project:0.005137 || sensibility:0.026695 || DEFAULT:0.887333
+T || 工程 || NULL:0.036180 || project:0.211153 || work:0.236623 || engineering:0.027590 || construction^project:0.120404 || sensibility:0.092581 || DEFAULT:0.275469
+T || 水利 || water^conservancy:0.994720 || water:0.000980 || conservancy^project:0.004300 || DEFAULT:0.000000
+T || 建设 || NULL:0.008564 || development:0.037803 || construction:0.060498 || project:0.501082 || conservancy:0.046004 || conservancy^construction:0.069784 || facility:0.093585 || building:0.045833 || construction^construction:0.120190 || DEFAULT:0.016657
+T || 中央 || the^central^authority:0.981481 || central:0.007266 || central^committee:0.010832 || DEFAULT:0.000421
+T || 国家 || state:0.351988 || country:0.012466 || china:0.024497 || which:0.537098 || DEFAULT:0.073950
+T || 工程 || NULL:0.000493 || project:0.000901 || work:0.000802 || engineering:0.077527 || construction^project:0.020218 || sensibility:0.898735 || DEFAULT:0.001324
+T || 水利 || water^conservancy:0.765344 || water:0.172114 || conservancy^project:0.055979 || DEFAULT:0.006563
+T || 工程 || NULL:0.011775 || project:0.805361 || work:0.077014 || engineering:0.008977 || construction^project:0.039185 || sensibility:0.030128 || DEFAULT:0.027561
+T || 问题 || issue:0.225601 || problem:0.692753 || DEFAULT:0.081646
+T || 问题 || issue:0.328001 || problem:0.467259 || DEFAULT:0.204740
+T || 水利 || water^conservancy:0.535125 || water:0.086907 || conservancy^project:0.377866 || DEFAULT:0.000103
+T || 工程 || NULL:0.004964 || project:0.792912 || work:0.075816 || engineering:0.008911 || construction^project:0.038643 || sensibility:0.029768 || DEFAULT:0.048987

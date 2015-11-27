@@ -1,0 +1,89 @@
+# depslib dependency file v1.0
+1443750898 source:d:\program\10.10_menedwithbg\_ccode\_ccode\main.cpp
+	"_Declaration.h"
+	"_Parameter.h"
+	"_Model.h"
+	"_Corpus.h"
+	"_Initer.h"
+	"_GibbsSampler.h"
+	"_IncreLearn.h"
+	"_Test.h"
+
+1443883080 d:\program\10.10_menedwithbg\_ccode\_ccode\_declaration.h
+	<fstream>
+	<iostream>
+	<sstream>
+	<string>
+	<map>
+	<cstdlib>
+	<vector>
+	<assert.h>
+
+1443697790 d:\program\10.10_menedwithbg\_ccode\_ccode\_parameter.h
+	"_Declaration.h"
+
+1444816763 d:\program\10.10_menedwithbg\_ccode\_ccode\_model.h
+	"_Declaration.h"
+	"_Parameter.h"
+	<memory.h>
+	<set>
+	<map>
+	<vector>
+	<ctime>
+	<string>
+
+1444472580 d:\program\10.10_menedwithbg\_ccode\_ccode\_corpus.h
+	"_Declaration.h"
+	"_Parameter.h"
+	"_Model.h"
+	<vector>
+	<map>
+	<set>
+	<algorithm>
+
+1443965090 d:\program\10.10_menedwithbg\_ccode\_ccode\_initer.h
+	"_Declaration.h"
+	"_Parameter.h"
+	"_Corpus.h"
+	"_Model.h"
+	"_Util.h"
+	<fstream>
+	<ios>
+	<sstream>
+
+1439989055 d:\program\10.10_menedwithbg\_ccode\_ccode\_util.h
+	"ctime"
+	<string>
+	<functional>
+
+1444792311 d:\program\10.10_menedwithbg\_ccode\_ccode\_gibbssampler.h
+	"_Declaration.h"
+	"_Parameter.h"
+	"_Model.h"
+	"_Corpus.h"
+	"_Util.h"
+	"cmath"
+
+1443962942 d:\program\10.10_menedwithbg\_ccode\_ccode\_increlearn.h
+	"_Declaration.h"
+	"_Parameter.h"
+	"_Model.h"
+	"_Corpus.h"
+	"_Initer.h"
+	"_GibbsSampler.h"
+	"_Util.h"
+	<vector>
+
+1444816778 d:\program\10.10_menedwithbg\_ccode\_ccode\_test.h
+	"_Declaration.h"
+	"_Parameter.h"
+	"_Model.h"
+	"_Corpus.h"
+	"_Initer.h"
+	"_GibbsSampler.h"
+	"_IncreLearn.h"
+	"_Util.h"
+	<fstream>
+	<ios>
+	<sstream>
+
