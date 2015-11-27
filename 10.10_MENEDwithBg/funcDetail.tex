@@ -1,0 +1,265 @@
+\documentclass[a4paper,12pt]{article} %文档类型
+\usepackage{CJK}
+\usepackage{ctex}
+\usepackage{amsmath,amssymb,amstext} %多种公式环境和数学命令
+\usepackage{float}
+\usepackage{array}           %数组和表格制作
+\usepackage{fancyhdr}        %页眉页脚设置
+\usepackage{graphicx}        %插图
+\usepackage{tabularx}        %自动设置表格列宽
+\usepackage{multirow}        %跨行表格
+\usepackage{multicol}        %跨列表格
+\usepackage{titlesec}        %标题设置
+\usepackage{titletoc}        %目录格式设置
+\usepackage[top=2.5cm,bottom=2.0cm,left=2.0cm,right=2.0cm]{geometry} % 页边距
+\newcommand{\hei}{\CJKfamily{hei}}  %定义的新命令
+\newcommand{\li}{\CJKfamily{li}}
+\renewcommand{\figurename}{{图}}
+\linespread{1.7}   %1.5倍行距
+\usepackage{listings}
+\usepackage{xcolor}
+ \lstset{
+   %行号
+   numbers=left,
+   %背景框
+   framexleftmargin=10mm,
+   frame=none,
+   %背景色
+   %backgroundcolor=\color[rgb]{1,1,0.76},
+   backgroundcolor=\color[RGB]{245,245,244},
+   basicstyle={\ttfamily},
+   %样式
+   keywordstyle=\bf\color{blue},
+   identifierstyle=\bf,
+   numberstyle=\color[RGB]{0,192,192},
+   commentstyle=\it\color[RGB]{0,96,96},
+   stringstyle=\rmfamily\slshape\color[RGB]{128,0,0},
+   %显示空格
+   showstringspaces=false,
+   breaklines=true,
+   escapeinside=``
+}
+
+
+\begin{document}
+\begin{CJK}{GBK}{hei}
+\begin{center}
+\Large
+\hei{吴杉 08\_06}
+\end{center}
+\section{计算entities概率的函数：getEntsPrblts()}
+
+\subsection*{标准式子：}
+
+\begin{eqnarray}
+\begin{aligned}
+&
+p(y_d = l | w,z_{\neg d},t_{\neg d},y_{\neg d},\Gamma)
+\varpropto
+\frac {\alpha _l + |\{y_{d^\prime} = l , d \neq d^\prime \}|}
+{\sum\nolimits_{k=1}^K(\alpha_k + \alpha_{df} + |D| -1 )}
+\\ &
+\prod\limits_{i = 1}^{N_{d}}
+\bigg(
+\frac {\gamma_1 + |\{t_{d^\prime j} = 0 , d \neq d^\prime \}|}
+{\gamma_1 + \gamma_2 +\sum\nolimits_{d \neq d^\prime} N_{d^\prime}}
+\frac {\beta _{bg} + |\{t_{d^\prime j} = 0,w_{d^\prime j} = w_{di} , d \neq d^\prime \}|}
+{|W|\beta _{bg} + |\{t_{d^\prime j} = 0 , d \neq d^\prime \}|}
+\\ &
++
+\frac {\gamma_2 + |\{t_{d^\prime j} = 1 , d \neq d^\prime \}|}
+{\gamma_1 + \gamma_2 +\sum\nolimits_{d \neq d^\prime} N_{d^\prime}}
+\frac {\beta _{l} + |\{z_{d^\prime j} = l , w_{d^\prime j} = w_{di} , d \neq d^\prime \}|}
+{|W|\beta _{l} + |\{z_{d^\prime j} = l , d \neq d^\prime \}|}
+\bigg)
+\end{aligned}
+\end{eqnarray}
+
+\subsection*{因为在同一个句子中许多变量都是相同的，在归一化是将被约去，所以简化了一部分分母：}
+
+\begin{eqnarray}
+\begin{aligned}
+&
+p(y_d = l | w,z_{\neg d},t_{\neg d},y_{\neg d},\Gamma)
+\varpropto
+(\alpha _l + |\{y_{d^\prime} = l , d \neq d^\prime \}|) \cdot
+\\ &
+\prod\limits_{i = 1}^{N_{d}}
+\bigg(
+({\gamma_1 + |\{t_{d^\prime j} = 0 , d \neq d^\prime \}|} )\cdot
+\frac {\beta _{bg} + |\{t_{d^\prime j} = 0,w_{d^\prime j} = w_{di} , d \neq d^\prime \}|}
+{\beta _{bg} + \frac {|\{t_{d^\prime j} = 0 , d \neq d^\prime \}|}{|W|}}
+\\ &
++
+({\gamma_2 + |\{t_{d^\prime j} = 1 , d \neq d^\prime \}|} )\cdot
+\frac {\beta _{l} + |\{z_{d^\prime j} = l , w_{d^\prime j} = w_{di} , d \neq d^\prime \}|}
+{\beta _{l} + \frac{|\{z_{d^\prime j} = l , d \neq d^\prime \}|}{|W|}}
+\bigg)
+\end{aligned}
+\end{eqnarray}
+
+\subsection*{亦即:}
+\begin{eqnarray}
+\begin{aligned}
+&
+p(y_d = l | w,z_{\neg d},t_{\neg d},y_{\neg d},\Gamma)
+\varpropto
+(\alpha _l + |\{y_{d^\prime} = l , d \neq d^\prime \}|) \cdot
+\\ &
+\prod\limits_{i = 1}^{N_{d}}
+\bigg(
+\frac{{\gamma_1 + |\{t_{d^\prime j} = 0 , d \neq d^\prime \}|} }
+{{\gamma_2 + |\{t_{d^\prime j} = 1 , d \neq d^\prime \}|} }
+\frac {\beta _{bg} + |\{t_{d^\prime j} = 0,w_{d^\prime j} = w_{di} , d \neq d^\prime \}|}
+{\beta _{bg} + \frac {|\{t_{d^\prime j} = 0 , d \neq d^\prime \}|}{|W|}}
+\\ &
++
+\frac {\beta _{l} + |\{z_{d^\prime j} = l , w_{d^\prime j} = w_{di} , d \neq d^\prime \}|}
+{\beta _{l} + \frac{|\{z_{d^\prime j} = l , d \neq d^\prime \}|}{|W|}}
+\bigg)
+\end{aligned}
+\end{eqnarray}
+
+\subsection*{更显式的写为:}
+\begin{eqnarray}
+\begin{aligned}
+&
+p(y_d = ent )
+\varpropto
+( alpha\_ent + Cnt\_ent_{(w.r.t \  peudoDocs)}) \cdot
+\\ &
+\prod\limits_{w \in pseudoDoc}
+\bigg(
+\frac{gamma\_bg + Cnt\_bg}
+{gamma\_df + Cnt\_df } \cdot
+\frac {beta\_bg + Cnt(bg,w)}
+{|W|*beta\_bg +  Cnt\_bg }
+\\ &
++
+\frac {beta\_ent + Cnt(ent,w)}
+{|W|*beta\_ent + Cnt\_ent_{(w.r.t \  words)}}
+\bigg)
+\end{aligned}
+\end{eqnarray}
+
+\subsection*{抽取一部分共同的式子:}
+
+\begin{eqnarray}
+\begin{aligned}
+comPart = (gamma\_bg + Cnt\_bg) & / (gamma\_df + Cnt\_df ) \\
+&/ (beta\_bg +  {Cnt\_bg}/{|W|})
+\end{aligned}
+\end{eqnarray}
+
+\subsection*{得:}
+
+\begin{eqnarray}
+\begin{aligned}
+&
+p(y_d = ent )
+\varpropto
+( alpha\_ent + Cnt\_ent_{(w.r.t \  peudoDocs)}) \cdot
+\\ &
+\prod\limits_{w \in pseudoDoc}
+\bigg(
+comPart \cdot
+(beta\_bg + Cnt(bg,w))
+\\ &
++
+\frac {beta\_ent + Cnt(ent,w)}
+{beta\_ent + {Cnt\_ent_{(w.r.t \  words)}}/{|W|}}
+\bigg)
+\end{aligned}
+\end{eqnarray}
+
+\subsection*{对此处的$|w|$的具体所指存疑:}
+
+\begin{eqnarray}
+\begin{aligned}
+comPart = (gamma\_bg + Cnt\_bg) & / (gamma\_df + Cnt\_df ) \\
+&/ (beta\_bg + \frac {Cnt\_bg}{|W|_{(\small{:contextNum?currentContextNum})}})
+\end{aligned}
+\end{eqnarray}
+\\注：这里的words都视为context words。\\
+\begin{eqnarray}
+\begin{aligned}
+&
+p(y_d = ent )
+\varpropto
+( alpha\_ent + Cnt\_ent_{(w.r.t \  peudoDocs)}) \cdot
+\\ &
+\prod\limits_{w \in pseudoDoc}
+\bigg(
+comPart \cdot
+(beta\_bg + Cnt(bg,w))
+\\ &
++
+\frac {beta\_ent + Cnt(ent,w)}
+{beta\_ent + \frac {Cnt\_ent_{(w.r.t \  words)}}{|W|_{(:\small{contextNum?entity.wordid_cnt.size()})}}}
+\bigg)
+\end{aligned}
+\end{eqnarray}
+\\ANS:context\_words.
+
+\subsection*{另外对于mention词，t必为1，所以对于此项word只需求:}
+\begin{eqnarray}
+\frac {beta\_ent + Cnt(ent,w)}
+{beta\_ent + {Cnt\_ent_{(w.r.t \  words)}}/{|W|}}
+\end{eqnarray}
+
+\section{选择进一步增量学习数据的函数：isToLearn()}
+\subsection*{$selectMode\ ==\ 3$时，使用置信度评定$(>\eta)$:}
+\begin{eqnarray}
+\frac { \max\limits_i p(y_d = i)}
+{\sum\limits_i p(y_d = i)}
+>
+\eta
+\end{eqnarray}
+
+\begin{eqnarray}
+\frac { \max\limits_i \mbox{\emph{\huge e}}^{p(y_d = i)}}
+{\sum\limits_i \mbox{\emph{\huge e}}^{p(y_d = i)}}
+>
+\eta
+\end{eqnarray}
+
+\section{对unlabeled used set进行采样，sampleOnce( indexes):}
+\subsection{问题是是否要对labeled data重采Indicators。}
+ANS:不用。
+
+\section{计算Indicator的函数：getIndicatorPrblt()}
+
+\subsection*{标准式子：}
+
+\begin{eqnarray}
+\begin{aligned}
+\frac{p(t_{di} = 0| w,z_{\neg d},t_{\neg d},y,\Gamma )} {p(t_{di} = 1| w,z_{\neg d},t_{\neg d},y,\Gamma )}
+= &
+\frac {\gamma_1 + |\{t_{d^\prime j} = 0,d^\prime \neq d \}|} {{\gamma _2 + |\{t_{d^\prime j} = 1,d^\prime \neq d \}|}}
+\cdot \\ &
+\frac {\beta_{bg} + |\{ t_{d^\prime j} = 0, w_{d^\prime j} = w_{di} ,d^\prime \neq d  \}|}
+{\beta_{df} + |\{ z_{d^\prime j} = y_d , w_{d^\prime j} = w_{di} ,d^\prime \neq d  \}|}
+\cdot \\ &
+\frac {|W|\beta_{df} + |\{ z_{d^\prime j} = y_d ,d^\prime \neq d  \}|}
+{|W|\beta_{bg} + |\{ t_{d^\prime j} = 0 ,d^\prime \neq d  \}|}
+\end{aligned}
+\end{eqnarray}
+
+\subsection*{更显式的写为:}
+\begin{eqnarray}
+\frac{p(t_{di} = 0)} {p(t_{di} = 1)}
+=
+\frac { gamma\_{bg} + cnt\_{bg} } { gamma\_{df} + cnt\_{df} }
+\cdot
+\frac { beta\_{bg} + cnt(bg,w_{di})}
+{ beta\_{df} + cnt(ent,w_{di})}
+\cdot
+\frac {|W| beta\_{df} + cnt\_{ent}}
+{|W| beta\_{bg} + cnt\_{bg}}
+\end{eqnarray}
+
+
+
+\end{CJK}
+\end{document}
+
